@@ -26,9 +26,10 @@ public class ManagementSystem {
         if (instance == null) {
             instance = new ManagementSystem();
             Context ctx = new InitialContext();
-            instance.dataSource = (DataSource) ctx.lookup("java:comp/env/jdbc/ConstControlDS");
+            instance.dataSource = (DataSource) ctx.lookup("java:comp/env/jdbc/CostControlDS");
             con = dataSource.getConnection();
         }
+
         return instance;
     }
 

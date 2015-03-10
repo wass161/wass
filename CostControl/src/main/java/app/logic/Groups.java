@@ -11,7 +11,7 @@ import java.util.Date;
  */
 public class Groups {
     private int id;
-    private String name;
+    public String name;
     private Date fd;
 
     public int getId(){
