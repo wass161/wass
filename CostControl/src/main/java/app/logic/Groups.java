@@ -10,9 +10,9 @@ import java.util.Date;
  * To change this template use File | Settings | File Templates.
  */
 public class Groups {
-    private int id;
+    public int id;
     public String name;
-    private Date fd;
+    public Date fd;
 
     public int getId(){
         return id;
