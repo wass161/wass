@@ -1,5 +1,7 @@
 package app.logic;
 
+import java.util.Date;
+
 /**
  * Created with IntelliJ IDEA.
  * User: vbrovkin
@@ -12,6 +14,7 @@ public class ItemCosts {
     private int idGroup;
     private String name;
     private int cash;
+    private Date fd;
 
     public int getId(){
         return id;
@@ -24,5 +27,18 @@ public class ItemCosts {
     }
     public int getCash(){
         return cash;
+    }
+
+    public void setId(int id){
+        this.id = id;
+    }
+    public void setName(String name){
+        this.name = name;
+    }
+    public void setCash(int cash){
+        this.cash = cash;
+    }
+    public void setFd(Date fd){
+        this.fd = fd;
     }
 }

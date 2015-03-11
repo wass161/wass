@@ -1,2 +1,6 @@
 create sequence groups_id_seq;
 create table groups ( id int default nextval('groups_id_seq'::regclass), name varchar(255) not null, fd date not null);
+alter table groups add primary key(id);
+
+create sequence items_id_seq;
+create table items ( id int default nextval('items_id_seq'::regclass), name varchar(255) not null, cash int, fd date not null, id_group int not null);
