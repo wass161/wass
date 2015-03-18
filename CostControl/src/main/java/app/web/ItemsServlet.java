@@ -20,28 +20,29 @@ import java.util.List;
 public class ItemsServlet extends HttpServlet{
 
     private int id;
+    private String name;
 
     protected void processRequest(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         res.setContentType("text/html;charset=utf-8");
         try {
-            int id = Integer.parseInt(req.getParameter("id"));
-            this.id = id;
             List<ItemCosts> itemCosts =  ManagementSystem.getInstance().getItemsByIdGroups(id);
+            req.setAttribute("nameGroup",this.name);
             req.setAttribute("itemCosts",itemCosts);
+            req.getRequestDispatcher("/items.jsp").forward(req, res);
+            return;
         } catch (Exception e) {
         }
-        req.getRequestDispatcher("/items.jsp").forward(req, res);
     }
 
     protected void processPost (HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-        res.setCharacterEncoding("UTF-8");
+        req.setCharacterEncoding("UTF-8");
         String nameAddItem = req.getParameter("newItemName");
         String cashAddItem = req.getParameter("newItemCash");
         try {
             ManagementSystem.getInstance().addItem(nameAddItem, Integer.parseInt(cashAddItem), this.id);
         } catch (Exception e) {
         }
-        doGet(req, res);
+        processRequest(req, res);
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -49,6 +50,10 @@ public class ItemsServlet extends HttpServlet{
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int id = Integer.parseInt(request.getParameter("id"));
+        String name = request.getParameter("name");
+        this.id = id;
+        this.name = name;
         processRequest(request, response);
     }
 }

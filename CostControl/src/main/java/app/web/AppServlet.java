@@ -35,12 +35,28 @@ public class AppServlet extends HttpServlet {
     }
 
     protected void processPost (HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-        res.setCharacterEncoding("UTF-8");
+        req.setCharacterEncoding("UTF-8");
         String nameAddGroup = req.getParameter("newGroup");
-        try {
-            ManagementSystem.getInstance().addGroup(nameAddGroup);
-        } catch (Exception e) {
+        String[] delGroupsId = req.getParameterValues("delId");
+
+        //добавление группы
+        if (!(nameAddGroup == null)) {
+            try {
+                ManagementSystem.getInstance().addGroup(nameAddGroup);
+            } catch (Exception e) {
+            }
         }
+
+        //удаление отмеченных групп
+        if (!(delGroupsId == null)){
+            for(String id : delGroupsId){
+                try {
+                    ManagementSystem.getInstance().delGroup(Integer.parseInt(id));
+                } catch (Exception e) {
+                }
+            }
+        }
+
         doGet(req, res);
     }
 

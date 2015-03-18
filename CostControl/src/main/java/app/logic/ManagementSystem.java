@@ -42,7 +42,6 @@ public class ManagementSystem {
         List<Groups> listGroups = new ArrayList<>();
         Statement stmt = null;
         ResultSet rs = null;
-
         try {
             stmt = con.createStatement();
             rs = stmt.executeQuery("select id, name, fd from groups");
@@ -76,7 +75,6 @@ public class ManagementSystem {
         List<ItemCosts> listItems = new ArrayList<>();
         Statement stmt = null;
         ResultSet rs = null;
-
         try {
             stmt = con.createStatement();
             rs = stmt.executeQuery("select id, name, cash, fd from items where id_group=" + id);
@@ -108,7 +106,6 @@ public class ManagementSystem {
     public void addGroup(String name) throws SQLException {
         Statement stmt = null;
         ResultSet rs = null;
-
         try {
             stmt = con.createStatement();
             rs = stmt.executeQuery("insert into groups(name, fd) values ('" + name + "', now())");
@@ -123,13 +120,42 @@ public class ManagementSystem {
         }
     }
 
+    /**
+     * Метод удаления группы и всех принадлежащих ей пунктов по ее идентификатору
+     * @param id идентификатор группы
+     * @throws SQLException
+     */
+    public void delGroup(int id) throws SQLException {
+        Statement stmt = null;
+        ResultSet rs = null;
+        try {
+            stmt = con.createStatement();
+            rs = stmt.executeQuery("delete from groups where id='" + id + "'; " +
+                                   "delete from items where id_group='" + id + "'");
+
+        } finally {
+            if (rs != null){
+                rs.close();
+            }
+            if (stmt != null){
+                stmt.close();
+            }
+        }
+    }
+
+    /**
+     * Метод добавления нового пункта расходов
+     * @param name имя пункта
+     * @param cash затраченное количество денег
+     * @param group_id id группы, к которому будет принадлежать создаваемый пункт
+     * @throws SQLException
+     */
     public void addItem(String name, int cash, int group_id) throws SQLException {
         Statement stmt = null;
         ResultSet rs = null;
-
         try {
             stmt = con.createStatement();
-            rs = stmt.executeQuery("insert into groups(name, fd) values ('" + name + "', now())");
+            rs = stmt.executeQuery("insert into items(name, cash, fd, id_group) values ('" + name + "'," + cash + " , now(), " + group_id + ")");
 
         } finally {
             if (rs != null){
@@ -140,6 +166,4 @@ public class ManagementSystem {
             }
         }
     }
-
-
 }
