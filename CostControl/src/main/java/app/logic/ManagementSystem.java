@@ -32,7 +32,6 @@ public class ManagementSystem {
 
         return instance;
     }
-
     /**
      * Метод получения списка групп из БД
       * @return listGroup
@@ -64,7 +63,6 @@ public class ManagementSystem {
         }
         return listGroups;
     }
-
     /**
      * Метод получения пунктов растрат по id группы
      * @param id
@@ -97,7 +95,6 @@ public class ManagementSystem {
         }
         return listItems;
     }
-
     /**
      * Метод добавление новой группы расходов
      * @param name имя группы
@@ -119,7 +116,6 @@ public class ManagementSystem {
             }
         }
     }
-
     /**
      * Метод удаления группы и всех принадлежащих ей пунктов по ее идентификатору
      * @param id идентификатор группы
@@ -142,7 +138,6 @@ public class ManagementSystem {
             }
         }
     }
-
     /**
      * Метод добавления нового пункта расходов
      * @param name имя пункта
@@ -156,6 +151,27 @@ public class ManagementSystem {
         try {
             stmt = con.createStatement();
             rs = stmt.executeQuery("insert into items(name, cash, fd, id_group) values ('" + name + "'," + cash + " , now(), " + group_id + ")");
+
+        } finally {
+            if (rs != null){
+                rs.close();
+            }
+            if (stmt != null){
+                stmt.close();
+            }
+        }
+    }
+    /**
+     * Метод удаления пункта расходов
+     * @param id идентификатор пункта
+     * @throws SQLException
+     */
+    public void delItem(int id) throws SQLException{
+        Statement stmt = null;
+        ResultSet rs = null;
+        try {
+            stmt = con.createStatement();
+            rs = stmt.executeQuery("delete from items where id='" + id + "'");
 
         } finally {
             if (rs != null){

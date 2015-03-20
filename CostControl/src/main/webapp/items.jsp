@@ -10,23 +10,40 @@
 <html>
 <head>
     <title>Items</title>
+    <link href="<c:url value="/css/items.css" />" rel="stylesheet"/>
 </head>
 <body>
-    <h2>Items</h2>
+    <h1>Items</h1>
     <a href="/CC">Список групп</a>
     <p><c:out value="${nameGroup}"/></p>
-    <table>
-        <c:forEach var="var" items="${itemCosts}">
+    <form action="<c:url value="/items"/>" method="POST" accept-charset="UTF-8">
+        <table border="1" cellpadding="5">
+            <c:set var="summary_cash" scope="session" value="0"/>
+            <c:forEach var="var" items="${itemCosts}">
+                <c:set var="summary_cash" scope="session" value="${summary_cash + var.cash}"/>
+                <tr>
+                    <td>
+                        <c:out value="${var.name}"/>
+                    </td>
+                    <td>
+                        <c:out value="${var.cash}"/>
+                    </td>
+                    <td>
+                        <input type="checkbox" name="delId" value="${var.id}">
+                    </td>
+                </tr>
+            </c:forEach>
             <tr>
                 <td>
-                    <c:out value="${var.name}"/>
+                    ИТОГО:
                 </td>
                 <td>
-                    <c:out value="${var.cash}"/>
+                    <c:out value="${summary_cash}"/>
                 </td>
             </tr>
-        </c:forEach>
-    </table>
+        </table>
+        <p><button type="submit">Удалить отмеченные</button></p>
+    </form>
     Введите название нового пункта покупки:
     <form action="<c:url value="/items"/>" method="POST" accept-charset="UTF-8">
         <p>Наименование:<input type="text" name="newItemName"></p>

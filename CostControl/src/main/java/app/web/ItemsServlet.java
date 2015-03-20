@@ -38,9 +38,22 @@ public class ItemsServlet extends HttpServlet{
         req.setCharacterEncoding("UTF-8");
         String nameAddItem = req.getParameter("newItemName");
         String cashAddItem = req.getParameter("newItemCash");
-        try {
-            ManagementSystem.getInstance().addItem(nameAddItem, Integer.parseInt(cashAddItem), this.id);
-        } catch (Exception e) {
+        String[] delItems = req.getParameterValues("delId");
+        //добавление пункта
+        if (!(nameAddItem == null)){
+            try {
+                ManagementSystem.getInstance().addItem(nameAddItem, Integer.parseInt(cashAddItem), this.id);
+            } catch (Exception e) {
+            }
+        }
+        //удаление пунктов
+        if (!(delItems == null)){
+            for(String id : delItems){
+                try {
+                    ManagementSystem.getInstance().delItem(Integer.parseInt(id));
+                } catch (Exception e) {
+                }
+            }
         }
         processRequest(req, res);
     }

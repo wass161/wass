@@ -1,0 +1,40 @@
+body
+{
+    background-image: url(/images/dollar.jpg);
+    background-repeat: repeat;
+}
+table{
+    border-collapse: collapse;
+    border: 1px solid black;
+
+}
+.table-groups {
+    width: 50%;
+    border-collapse: separate;
+    border-spacing: 0;
+    border: 0;
+    border-radius: 5px;
+    text-shadow: 0 1px 0 #fff;
+    color: #2a2a2a;
+    background: #fafafa;
+    margin: 20px auto;
+}
+.table-groups td
+{
+    height: 50px;
+    padding: 0 20px;
+    border-bottom: 1px solid #cdcdcd;
+    border-radius: 5px;
+    box-shadow: 0 1px 0 white;
+    -moz-box-shadow: 0 1px 0 white;
+    -webkit-box-shadow: 0 1px 0 white;
+    text-align: center;
+    vertical-align: middle;
+    display: table-cell;
+    border-right: 1px solid #cdcdcd;
+    background-image: -webkit-gradient(linear,center bottom,center top,from(#fff),color-stop(0.5, #eaeaea),to(#fff));
+
+}
+.table-groups td.checkbox {
+   width: 20px;
+}
