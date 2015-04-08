@@ -1,0 +1,64 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context=".MainActivity"
+    android:background="#ffb6b6b6">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/title"
+        android:id="@+id/textView"
+        android:layout_gravity="center_horizontal"
+        android:textColor="#ff2830dd"
+        android:textSize="20sp"
+        android:textStyle="bold|italic" />
+
+    <FrameLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="@string/add_group"
+            android:id="@+id/button"
+            android:alpha="1"
+            android:clickable="true"
+            android:ellipsize="start"
+            android:singleLine="false"
+            android:enabled="true"
+            android:focusable="true"
+            android:focusableInTouchMode="false"
+            android:layout_gravity="left"
+            android:layout_marginLeft="10sp"
+            android:drawableLeft="@android:drawable/ic_input_add"
+            android:background="@drawable/btn_background" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="@string/del_group"
+            android:id="@+id/button2"
+            android:alpha="1"
+            android:clickable="true"
+            android:ellipsize="middle"
+            android:enabled="true"
+            android:drawableRight="@android:drawable/ic_delete"
+            android:layout_gravity="right"
+            android:layout_marginRight="10sp"
+            android:background="@drawable/btn_background" />
+    </FrameLayout>
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/listView" />
+
+</LinearLayout>
